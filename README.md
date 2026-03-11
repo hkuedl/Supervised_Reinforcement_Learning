@@ -3,7 +3,7 @@ This repository is the official implementation for the paper: **"Uncertainty All
 
 Authors: Haoyuan Deng, Yihong Zhou, Thomas Morstyn, Yi Wang
 
-![Project Overview Figure](Framework.pdf)
+![Project Overview Figure](Framework.png)
 
 Inspired by the training paradigms in large language models, this paper proposes a Supervised Reinforcement Learning (SRL) framework for learning DER coordination policies. This framework first pre-trains a policy on demonstration data in a supervised-learning fashion, which is then further fine-tuned using RL. Furthermore, we propose a two-step fine-tuning process: offline fine-tuning for enhancing policy performance and online fine-tuning for adapting it to the real-world dynamics.
 
