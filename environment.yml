@@ -1,0 +1,28 @@
+name: sup_rl
+channels:
+  - defaults
+  - invenia
+  - picos
+  - gurobi
+  - conda-forge
+
+dependencies:
+  - python=3.9
+  - pip
+  - numpy
+  - scipy
+  - scikit-learn
+  - pandas
+  - matplotlib
+  - seaborn
+  - cvxpy
+  - gurobi
+  - joblib
+  - jupyter
+  - pip:
+      - --find-links https://download.pytorch.org/whl/cu126 torch torchvision torchaudio
+      - gymnasium
+      - stable-baselines3[extra]
+      - optuna
+      - openpyxl
+      - imitation
