@@ -5,20 +5,11 @@ Authors: Haoyuan Deng, Yihong Zhou, Thomas Morstyn, Yi Wang
 
 Inspired by the training paradigms in large language models, this paper proposes a Supervised Reinforcement Learning (SRL) framework for learning DER coordination policies. This framework first pre-trains a policy on demonstration data in a supervised-learning fashion, which is then further fine-tuned using RL. Furthermore, we propose a two-step fine-tuning process: offline fine-tuning for enhancing policy performance and online fine-tuning for adapting it to the real-world dynamics.
 
-# Environment
-Python version: 3.9.21
-
-The must-have packages can be installed by running
-```bash
-conda env create -f environment.yml
-```
-
 ## Contents
 
 - `main.py` — Main script orchestrating BC pretraining, offline fine-tuning in sim env and online fine-tuning in real env.
 - `Env/` — Environment implementation (e.g., `Env/Env.py` and `Env/Battery.py`). Replace or adapt this if you want a different environment. If you use the current environment, please modify the path of the dataset in the current `Env.py' file.
 - `test_act/` — Example demonstration data (e.g., `his_Action.npy`). This can be replaced with other expert trajectories.
-- `new_logs/` — Default location for training outputs and saved models.
 - `environment.yml` — Conda environment specification for dependencies.
 
 ---
@@ -64,22 +55,6 @@ conda env create -f environment.yml
 
    - Models: `new_logs/<run_name>/sim_env/final_model` and `new_logs/<run_name>/real_env/final_model`
    - TensorBoard logs: `logs/episode_reward/` (or the `tensorboard_log` directories under `new_logs/`)
-
----
-
-## Important code points to know
-
-- `imitation_learning(act_dir, train_episodes, ...)`
-  - Reads actions from `act_dir`, constructs transitions, trains a BC policy, and returns the BC trainer and arrays used.
-
-- `train_ppo_agent(input_model, train_episodes, log_dir, prefill_data=None, real_env=True, sim_train=False, ...)`
-  - Creates `EH_Model` with parameters `real_env`, `sim_train`, `freq`, `cut_eps`.
-  - Initializes `PPO` and copies networks from `input_model.policy` (BC policy) into the PPO policy.
-  - If `prefill_data` is provided, it pre-populates PPO's rollout buffer using `PrefillCallback` before training.
-
-- `PrefillCallback` fills the PPO rollout buffer with expert transitions, computes values/log-probs, then calls `compute_returns_and_advantage(...)` so that PPO can start training with offline data.
-
-- `TrainRewardLogger` logs per-episode rewards to TensorBoard during training.
 
 ---
 
