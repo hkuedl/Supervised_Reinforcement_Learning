@@ -1,5 +1,5 @@
 # Supervised_Reinforcement_Learning
-This repository is the official implementation for the paper: **"Uncertainty Allocation-based Tube Model Predictive Control for Building Energy Management"**.
+This repository is the official implementation for the paper: **"Supervised Reinforcement Learning for the Coordination of Distributed Energy Resources"**.
 
 Authors: Haoyuan Deng, Yihong Zhou, Thomas Morstyn, Yi Wang
 
